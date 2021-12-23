@@ -1,0 +1,43 @@
+#!/bin/sh
+LOCPROG=$(pwd)/$1
+LOCTEST=$(pwd)/$2
+
+if [ ! -f $LOCPROG ] || [ ! -x $LOCPROG ]; then
+  echo 'Erro: O programa nao existe ou nao eh executavel'
+  exit 1
+fi
+
+if [ ! -d $LOCTEST ]; then
+  echo 'Erro: Pasta nao encontrada'
+  exit 1
+fi
+
+if [ ! -d $(pwd)/CCheckOutput ]; then
+  mkdir CCheckOutput
+fi
+
+LOCOUT=$(pwd)/CCheckOutput
+cd $LOCTEST
+
+for testCase in input*; do
+  $LOCPROG < $testCase > $LOCOUT/$testCase
+done
+
+for i in 1 2 3 4 5 6 7 8 9 10; do
+  mv $LOCOUT/input$i.txt $LOCOUT/output$i.txt
+done
+
+for compareOutput in output*; do
+  diff $LOCOUT/$compareOutput $compareOutput > /dev/null 2>/dev/null
+  if [ $? = 0 ]; then
+    echo $compareOutput PASSOU
+  elif [ $? = 1 ]; then
+    echo $compareOutput FALHOU
+    echo 'saida produzida x saida esperada:'
+    cat $LOCOUT/$compareOutput #Talvez seja melhor desativar esses output
+    cat $compareOutput
+  else
+    echo 'Erro: algum arquivo de saida nao existe ou nao pode ser acessado'
+    exit 1
+  fi
+done
