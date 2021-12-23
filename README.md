@@ -9,7 +9,7 @@ O CCheck suporta atualmente 10, e apenas 10, arquivos de saidas na pasta_de_said
 
 Para que o CCheck funcione direto do terminal sem a necessidade do "./", recomenda-se colocar o arquivo em /home/<nome_usuario>/bin. Em seguida, atualize o arquivo .bashrc colocando a seguinte linha:
 
-PATH=$PATH;/home/<nome_usuario>/bin
+PATH=$PATH:/home/<nome_usuario>/bin
 
 Isso fará com que o sistema operacional busque o comando nessa pasta automaticamente. Lembrando que para achar o arquivo .bashrc, será necessário ir até o diretório /home/<nome_usuario> e inserir ls -a para achar o arquivo "escondido"
 
