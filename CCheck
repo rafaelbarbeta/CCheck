@@ -33,9 +33,6 @@ for compareOutput in output*; do
     echo $compareOutput PASSOU
   elif [ $? = 1 ]; then
     echo $compareOutput FALHOU
-    echo 'saida produzida x saida esperada:'
-    cat $LOCOUT/$compareOutput #Talvez seja melhor desativar esses output
-    cat $compareOutput
   else
     echo 'Erro: algum arquivo de saida nao existe ou nao pode ser acessado'
     exit 1
