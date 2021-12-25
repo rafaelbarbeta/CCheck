@@ -7,8 +7,8 @@ if [ ! -f $LOCPROG ] || [ ! -x $LOCPROG ]; then
   exit 1
 fi
 
-if [ ! -d $LOCTEST ]; then
-  echo 'Erro: Pasta nao encontrada'
+if [ ! -d $LOCTEST ] || [ ! $(basename $LOCTEST) = "$2" ]; then
+  echo 'Erro: Pasta nao encontrada ou nao especificada'
   exit 1
 fi
 
