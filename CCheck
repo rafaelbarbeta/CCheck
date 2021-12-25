@@ -30,9 +30,9 @@ done
 for compareOutput in output*; do
   diff $LOCOUT/$compareOutput $compareOutput > /dev/null 2>/dev/null
   if [ $? = 0 ]; then
-    echo $compareOutput PASSOU
+    echo $compareOutput '\033[32mPASSOU\033[0m'
   elif [ $? = 1 ]; then
-    echo $compareOutput FALHOU
+    echo $compareOutput '\033[31mFALHOU\033[0m'
   else
     echo 'Erro: algum arquivo de saida nao existe ou nao pode ser acessado'
     exit 1
